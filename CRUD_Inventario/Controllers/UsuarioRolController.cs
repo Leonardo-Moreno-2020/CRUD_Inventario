@@ -25,15 +25,17 @@ namespace CRUD_Inventario.Controllers
                 return Data_B.usuario.Find(idUsuario).nombre;
             }
         }
-        public ActionResult ListarUsuarios()
+        public ActionResult ListarUsuario()
         {
             using (var Data_B = new inventario2021Entities())
-
             {
                 return PartialView(Data_B.usuario.ToList());
-
             }
+        
         }
+
+
+
         public static string NombreRol(int idRol)
         {
             using (var Data_B = new inventario2021Entities())
@@ -41,13 +43,11 @@ namespace CRUD_Inventario.Controllers
                 return Data_B.roles.Find(idRol).descripcion;
             }
         }
-        public ActionResult ListarRoles()
+        public ActionResult ListarRol()
         {
-            using (var Data_B = new inventario2021Entities())
-
+            using (var Data_B = new inventario2021Entities()) 
             {
                 return PartialView(Data_B.roles.ToList());
-
             }
         }
         public ActionResult Create()

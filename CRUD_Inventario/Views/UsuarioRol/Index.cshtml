@@ -24,10 +24,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.idUsuario)
+            @CRUD_Inventario.Controllers.UsuarioRolController.NombreUsuario(item.idUsuario)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.idRol)
+            @CRUD_Inventario.Controllers.UsuarioRolController.NombreUsuario(item.idRol)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
