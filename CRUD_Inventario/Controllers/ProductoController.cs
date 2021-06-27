@@ -25,6 +25,99 @@ namespace CRUD_Inventario.Controllers
                 return Data_B.proveedor.Find(idProveedor).nombre;
             }
         }
+        public ActionResult ListarProveedores()
+        {
+            using (var Data_B = new inventario2021Entities())
+            {
+                return PartialView(Data_B.proveedor.ToList());
+            }
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(producto newProducto)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            try
+            {
+                using (var Data_B = new inventario2021Entities())
+                {
+                    Data_B.producto.Add(newProducto);
+                    Data_B.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Cap_error)
+            {
+                ModelState.AddModelError("", "Error" + Cap_error);
+                return View();
+            }
 
+        }
+        public ActionResult Details(int id)
+        {
+            using (var Data_B = new inventario2021Entities())
+            {
+                producto productoDetalle = Data_B.producto.Where(a => a.id == id).FirstOrDefault();
+                return View(productoDetalle);
+            }
+        }
+        public ActionResult Delete(int id)
+        {
+            using (var Data_B = new inventario2021Entities())
+            {
+                var productDelete = Data_B.producto.Find(id);
+                Data_B.producto.Remove(productDelete);
+                Data_B.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+        }
+        public ActionResult Edit(int id)
+        {
+            try
+            {
+                using (var Data_B = new inventario2021Entities())
+                {
+                    producto producto = Data_B.producto.Where(a => a.id == id).FirstOrDefault();
+                    return View(producto);
+                }
+            }
+            catch (Exception Cap_error)
+            {
+                ModelState.AddModelError("", "error " + Cap_error);
+                return View();
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(producto productoEdit)
+        {
+            try
+            {
+                using (var Data_B = new inventario2021Entities())
+                {
+                    var producto = Data_B.producto.Find(productoEdit.id);
+                    producto.nombre = productoEdit.nombre;
+                    producto.percio_unitario = productoEdit.percio_unitario;
+                    producto.cantidad = productoEdit.cantidad;
+                    producto.descripcion = productoEdit.descripcion;
+                    producto.id_proveedor = productoEdit.id_proveedor;
+                    Data_B.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Cap_error)
+            {
+                ModelState.AddModelError("", "error" + Cap_error);
+                return View();
+            }
+
+        }
     }
+
 }
