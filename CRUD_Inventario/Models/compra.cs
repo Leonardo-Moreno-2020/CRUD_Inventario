@@ -11,7 +11,8 @@ namespace CRUD_Inventario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class compra
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,11 @@ namespace CRUD_Inventario.Models
         }
     
         public int id { get; set; }
+
+        [Required(ErrorMessage = "Digite la fecha de la compra")]
         public System.DateTime fecha { get; set; }
+
+        [Required(ErrorMessage = "Digite el total de la compra")]
         public int total { get; set; }
         public int id_usuario { get; set; }
         public int id_cliente { get; set; }

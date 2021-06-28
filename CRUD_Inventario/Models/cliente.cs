@@ -11,7 +11,8 @@ namespace CRUD_Inventario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,16 @@ namespace CRUD_Inventario.Models
         {
             this.compra = new HashSet<compra>();
         }
-    
+
         public int id { get; set; }
+
+        [Required(ErrorMessage = "El nombre no puede ir vacio")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "Digite su numero de documento")]
         public string documento { get; set; }
+
+        [Required(ErrorMessage = "Por favor digite su correo electronico")]
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

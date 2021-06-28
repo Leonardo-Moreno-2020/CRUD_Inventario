@@ -5,24 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Compras</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nueva compra", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fecha)
+            Fecha
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.total)
+            Total
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.id_usuario)
+            Usuario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.id_cliente)
+            Cliente
         </th>
         <th></th>
     </tr>
@@ -36,15 +36,15 @@
             @Html.DisplayFor(modelItem => item.total)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.id_usuario)
+            @CRUD_Inventario.Controllers.CompraController.NombreUsuario(item.id_usuario)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.id_cliente)
+            @CRUD_Inventario.Controllers.CompraController.NombreCliente(item.id_cliente)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.id })
         </td>
     </tr>
 }
