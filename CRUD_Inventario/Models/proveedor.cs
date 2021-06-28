@@ -11,7 +11,8 @@ namespace CRUD_Inventario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class proveedor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,17 @@ namespace CRUD_Inventario.Models
         }
     
         public int id { get; set; }
+
+        [Required(ErrorMessage = "Digite el nombre del proovedor")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "Digite la direccion")]
         public string direccion { get; set; }
+
+        [Required(ErrorMessage = "Digite el telefono")]
         public string telefono { get; set; }
+
+        [Required(ErrorMessage = "Digite el nombre del contacto")]
         public string nombre_contacto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

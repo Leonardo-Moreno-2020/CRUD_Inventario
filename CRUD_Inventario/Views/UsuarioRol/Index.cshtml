@@ -5,36 +5,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Usuario rol</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo usuario rol", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idUsuario)
+            Usuario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.idRol)
+            Rol
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @CRUD_Inventario.Controllers.UsuarioRolController.NombreUsuario(item.idUsuario)
-        </td>
-        <td>
-            @CRUD_Inventario.Controllers.UsuarioRolController.NombreUsuario(item.idRol)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @CRUD_Inventario.Controllers.UsuarioRolController.NombreUsuario(item.idUsuario)
+            </td>
+            <td>
+                @CRUD_Inventario.Controllers.UsuarioRolController.NombreUsuario(item.idRol)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.id }, new { @class = "linkDelete" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@section scripts{
+
+    <script>
+        $(".linkDelete").click(function (event) {
+            if (!confirm('¿ Esta seguro de eliminar ?')) {
+                event.preventDefault();
+            }
+        })
+    </script>
+
+}

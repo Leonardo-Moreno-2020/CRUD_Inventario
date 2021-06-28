@@ -11,7 +11,8 @@ namespace CRUD_Inventario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,10 +23,20 @@ namespace CRUD_Inventario.Models
         }
     
         public int id { get; set; }
+
+        [Required(ErrorMessage = "Digite el nombre")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "Digite el apellido")]
         public string apellido { get; set; }
+
+        [Required(ErrorMessage = "Digite su fecha de nacimiento ")]
         public System.DateTime fecha_nacimiento { get; set; }
+
+        [Required(ErrorMessage = "Digite su correo electronico")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "Digite la contraseña")]
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
