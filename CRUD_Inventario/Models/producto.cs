@@ -11,7 +11,8 @@ namespace CRUD_Inventario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,9 +23,17 @@ namespace CRUD_Inventario.Models
         }
     
         public int id { get; set; }
+
+        [Required(ErrorMessage = "Digite el nombre del producto")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "Digite el precio del producto")]
         public int percio_unitario { get; set; }
+
+        [Required(ErrorMessage = "Describa el producto")]
         public string descripcion { get; set; }
+
+        [Required(ErrorMessage = "Digite las unidades")]
         public int cantidad { get; set; }
         public int id_proveedor { get; set; }
     
