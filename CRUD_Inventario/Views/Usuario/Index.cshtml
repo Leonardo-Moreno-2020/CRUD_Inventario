@@ -23,10 +23,7 @@
         </th>
         <th>
             Correo electronico
-        </th>
-        <th>
-            Contraseña
-        </th>
+        </th>      
         <th></th>
     </tr>
 
@@ -44,9 +41,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.password)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
