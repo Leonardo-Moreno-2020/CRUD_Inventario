@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CRUD_Inventario.Models.Reporte_1>
+
+@{
+    ViewBag.Title = "Reporte_1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte_1</h2>
+<table class="table">
+    <tr>
+        <th>Cliente</th>
+        <th>Documento Cliente</th>
+        <th>Correo Cliente</th>
+        <th>Fecha Compra</th>
+        <th>Compra Total</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.nombreCliente)</td>
+            <td>@Html.DisplayFor(modelItem => item.documentoCliente)</td>
+            <td>@Html.DisplayFor(modelItem => item.emailCliente)</td>
+            <td>@Html.DisplayFor(modelItem => item.fechaCompra)</td>
+            <td>@Html.DisplayFor(modelItem => item.totalCompra)</td>
+        </tr>
+    }
+</table>
+
+<img src="https://img.vixdata.io/pd/jpg-large/es/sites/default/files/b/brazo_de_bucky_en_the_falcon_and_the_winter_soldier.jpg" alt="Alternate Text" />
+<p>Productos de computacion y las mejores partes para tu pc laptop y gamer, envios a todo el pais.</p>
+
+@Html.ActionLink("Generar Reporte_1", "ImprimirReporte_1", "Compra");
+

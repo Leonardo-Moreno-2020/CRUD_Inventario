@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CRUD_Inventario.Models;
+using Rotativa;
 
 namespace CRUD_Inventario.Controllers
 {
@@ -134,6 +135,34 @@ namespace CRUD_Inventario.Controllers
                 Data_B.SaveChanges();
                 return RedirectToAction("Index");
             }
+        }
+        public ActionResult Reporte_1()
+        {
+            try
+            {
+                var Data_B = new inventario2021Entities();
+                var query = from tabCliente in Data_B.cliente
+                            join tabCompra in Data_B.compra on tabCliente.id equals tabCompra.id_cliente
+                            select new Reporte_1
+                            {
+                                nombreCliente = tabCliente.nombre,
+                                documentoCliente = tabCliente.documento,
+                                emailCliente = tabCliente.email,
+                                fechaCompra = tabCompra.fecha,
+                                totalCompra = tabCompra.total
+                            };
+
+                return View(query);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
+            }
+        }
+        public ActionResult ImprimirReporte_1()
+        {
+            return new ActionAsPdf("Reporte_1") { FileName = "reporte_1.pdf" };
         }
     } 
 }
