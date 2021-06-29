@@ -5,13 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using CRUD_Inventario.Models;
 using System.Text;
-
+using System.Web.Security;
 
 namespace CRUD_Inventario.Controllers
 {
     public class UsuarioController : Controller
     {
+        
         // GET: Usuario
+
         public ActionResult Index()
         {
             using (var Data_B = new inventario2021Entities())
@@ -120,6 +122,39 @@ namespace CRUD_Inventario.Controllers
                 Data_B.SaveChanges();
                 return RedirectToAction("index");
             }
+            
+        }
+        public ActionResult Login(string message = "")
+        {
+            ViewBag.Message = message;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(String email, string password)
+        {
+            string passEncrip = UsuarioController.HashSHA1(password);
+            using (var Data_B = new inventario2021Entities())
+            {
+                var userLogin = Data_B.usuario.FirstOrDefault(e => e.email == email && e.password == passEncrip);
+                if (userLogin != null)
+                {
+                    FormsAuthentication.SetAuthCookie(userLogin.email, true);
+                    Session["User"] = userLogin;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return Login("Verifique sus datos");
+                }
+            }
+        }
+
+
+        public ActionResult CloseSession()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
     }
